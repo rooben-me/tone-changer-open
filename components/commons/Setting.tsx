@@ -19,20 +19,25 @@ const Setting = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant="outline"
-          className="bg-gray-800 border-gray-700/50 text-gray-400 hover:bg-gray-700 hover:border-gray-600 hover:text-white"
+          variant="ghost"
+          className="text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
           size="icon"
         >
-          <Settings className="h-4 w-4" />
+          <Settings className="h-5 w-5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-gray-900 border border-gray-800 text-gray-100">
         <DialogHeader>
-          <DialogTitle>API Settings</DialogTitle>
+          <DialogTitle className="text-xl font-semibold text-white">
+            API Settings
+          </DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="apiKey" className="text-right">
+        <div className="grid gap-6 py-4">
+          <div className="grid gap-2">
+            <Label
+              htmlFor="apiKey"
+              className="text-sm font-medium text-gray-300"
+            >
               API Key
             </Label>
             <Input
@@ -41,11 +46,15 @@ const Setting = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setApiKey(e.target.value)
               }
-              className="col-span-3"
+              className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
+              placeholder="Enter your API key"
             />
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="apiUrl" className="text-right">
+          <div className="grid gap-2">
+            <Label
+              htmlFor="apiUrl"
+              className="text-sm font-medium text-gray-300"
+            >
               API URL
             </Label>
             <Input
@@ -54,9 +63,18 @@ const Setting = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setApiUrl(e.target.value)
               }
-              className="col-span-3"
+              className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
+              placeholder="Enter API URL"
             />
           </div>
+        </div>
+        <div className="mt-6 flex justify-end">
+          <Button
+            type="submit"
+            className="bg-gradient-to-b from-purple-600 to-purple-700 text-white"
+          >
+            Save Changes
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
