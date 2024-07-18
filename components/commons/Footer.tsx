@@ -14,7 +14,7 @@ const Footer = () => {
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-900/10 border border-orange-800/30 text-orange-400 grayscale hover:grayscale-0 ease-in-out transition-all"
           >
             <div className="-ml-2">
-              <Image src="/rooben-photo.webp" width={24} height={24} />
+              <Image src="/rooben-photo.webp" width={24} height={24} alt="" />
             </div>
             My Portfolio
           </Link>
@@ -30,7 +30,7 @@ const Footer = () => {
           </Link>
         </div>
 
-        <Image src="/Signature_White.png" width={240} height={120} />
+        <Image src="/Signature_White.png" width={240} height={120} alt="" />
       </div>
     </footer>
   );
