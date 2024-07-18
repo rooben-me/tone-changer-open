@@ -1,7 +1,9 @@
+import Head from "next/head";
+
 import Footer from "../components/commons/Footer";
 import Header from "../components/commons/Header";
 import ToneAdjuster from "../components/ToneAdjuster";
-import Head from "next/head";
+import { Toaster } from "../components/ui/sonner";
 
 function Home() {
   return (
@@ -50,6 +52,7 @@ function Home() {
           <ToneAdjuster />
           <Footer />
         </div>
+        <Toaster />
       </div>
     </>
   );
