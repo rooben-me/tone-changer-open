@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Setting from "./Setting";
 
 const Header = () => {
   return (
@@ -10,6 +11,8 @@ const Header = () => {
           Tone Changer
         </h1>
       </div>
+
+      <Setting />
     </header>
   );
 };

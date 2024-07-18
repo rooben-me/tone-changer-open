@@ -4,19 +4,60 @@ import ScrambleText from "./commons/ScrambleText";
 import ToneChangerGrid from "./ToneChangerGrid";
 import Header from "./commons/Header";
 import Footer from "./commons/Footer";
+import useApiSettingsStore from "../store/apiSettingsStore";
+
+interface Tone {
+  tone: string;
+  weight: number;
+}
 
 const debouncedApiCall = debounce(
-  async (text, tones, setIsLoading, setOutputText) => {
+  async (
+    text: string,
+    tones: Tone[],
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setOutputText: React.Dispatch<React.SetStateAction<string>>,
+    apiKey: string,
+    apiUrl: string
+  ) => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/adjust-tone", {
+      const systemMessage = `You are a skilled writer tasked with rewriting text to match specific tones. 
+      Adjust the input text to reflect the following tones: ${tones
+        .map((t) => `${t.tone} (weight: ${t.weight})`)
+        .join(" and ")}. 
+      Maintain the original meaning and intent of the text while adapting its style and language to match the specified tones.
+      JUST REPLY WITH THE CORRECTED TEXT AND DO NOT BE WORDY KEEP IT SHORT AND DONT NOT TELL "Here is the rewrittern sentence text" AND DONT GIVE THE RESPONSE IN A QUOTES`;
+
+      const userMessage = `TEXT : "${text}"
+      TONES : ${tones
+        .map((t) => `${t.tone} (weight: ${t.weight})`)
+        .join(" and ")}`;
+
+      const response = await fetch(apiUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texts: [{ id: "1", text }], tones }),
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "llama3-70b-8192",
+          messages: [
+            { role: "system", content: systemMessage },
+            { role: "user", content: userMessage },
+          ],
+        }),
       });
 
+      if (!response.ok) {
+        throw new Error(`API responded with status ${response.status}`);
+      }
+
       const data = await response.json();
-      setOutputText(data.adjustedText || "Adjusted text will appear here");
+      setOutputText(
+        data.choices[0].message.content.trim() ||
+          "Adjusted text will appear here"
+      );
     } catch (error) {
       console.error("Error adjusting tone:", error);
       setOutputText("Error adjusting tone");
@@ -27,18 +68,19 @@ const debouncedApiCall = debounce(
   500
 );
 
-const ToneAdjuster = () => {
-  const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [tones, setTones] = useState([]);
+const ToneAdjuster: React.FC = () => {
+  const [inputText, setInputText] = useState<string>("");
+  const [outputText, setOutputText] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [tones, setTones] = useState<Tone[]>([]);
+  const { apiKey, apiUrl } = useApiSettingsStore();
 
-  const handleInputChange = useCallback((text) => {
+  const handleInputChange = useCallback((text: string) => {
     setInputText(text);
   }, []);
 
   const handleToneChange = useCallback(
-    (newTones) => {
+    (newTones: Tone[]) => {
       if (JSON.stringify(newTones) !== JSON.stringify(tones)) {
         setTones(newTones);
       }
@@ -48,9 +90,16 @@ const ToneAdjuster = () => {
 
   useEffect(() => {
     if (inputText.length > 3 && tones.length > 0) {
-      debouncedApiCall(inputText, tones, setIsLoading, setOutputText);
+      debouncedApiCall(
+        inputText,
+        tones,
+        setIsLoading,
+        setOutputText,
+        apiKey,
+        apiUrl
+      );
     }
-  }, [inputText, tones]);
+  }, [inputText, tones, apiKey, apiUrl]);
 
   return (
     <div className="w-full max-w-7xl mx-auto p-2 lg:p-8">
@@ -66,7 +115,9 @@ const ToneAdjuster = () => {
             <textarea
               className="w-full h-full p-6 pt-12 text-lg bg-indigo-950/50 text-indigo-100 rounded-2xl resize-none focus:ring-2 focus:ring-purple-500 focus:outline-none placeholder-indigo-300/50"
               placeholder="Enter text to adjust tone..."
-              onChange={(e) => handleInputChange(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                handleInputChange(e.target.value)
+              }
             />
             <label className="absolute top-4 left-6 text-sm font-semibold text-indigo-300">
               Input Text
