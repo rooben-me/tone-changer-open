@@ -18,7 +18,11 @@ const Setting = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button
+          variant="outline"
+          className="bg-gray-800 border-gray-700/50 text-gray-400 hover:bg-gray-700 hover:border-gray-600 hover:text-white"
+          size="icon"
+        >
           <Settings className="h-4 w-4" />
         </Button>
       </DialogTrigger>
