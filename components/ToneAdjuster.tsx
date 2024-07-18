@@ -2,8 +2,6 @@ import React, { useState, useCallback, useEffect } from "react";
 import debounce from "lodash/debounce";
 import ScrambleText from "./commons/ScrambleText";
 import ToneChangerGrid from "./ToneChangerGrid";
-import Header from "./commons/Header";
-import Footer from "./commons/Footer";
 import useApiSettingsStore from "../store/apiSettingsStore";
 
 interface Tone {
@@ -18,7 +16,8 @@ const debouncedApiCall = debounce(
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
     setOutputText: React.Dispatch<React.SetStateAction<string>>,
     apiKey: string,
-    apiUrl: string
+    apiUrl: string,
+    modelName: string
   ) => {
     setIsLoading(true);
     try {
@@ -41,7 +40,7 @@ const debouncedApiCall = debounce(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "llama3-70b-8192",
+          model: modelName,
           messages: [
             { role: "system", content: systemMessage },
             { role: "user", content: userMessage },
@@ -73,8 +72,9 @@ const ToneAdjuster: React.FC = () => {
   const [outputText, setOutputText] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [tones, setTones] = useState<Tone[]>([]);
-  const { apiKey, apiUrl } = useApiSettingsStore();
+  const { apiKey, apiUrl, modelName } = useApiSettingsStore();
 
+  console.log(modelName, "modea in home");
   const handleInputChange = useCallback((text: string) => {
     setInputText(text);
   }, []);
@@ -96,46 +96,41 @@ const ToneAdjuster: React.FC = () => {
         setIsLoading,
         setOutputText,
         apiKey,
-        apiUrl
+        apiUrl,
+        modelName
       );
     }
-  }, [inputText, tones, apiKey, apiUrl]);
+  }, [inputText, tones, apiKey, apiUrl, modelName]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-2 lg:p-8">
-      <Header />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:min-h-[calc(100vh-12rem)]">
-        <div className="flex items-center justify-center aspect-square lg:aspect-auto order-2 lg:order-none">
-          <ToneChangerGrid onToneChange={handleToneChange} />
-        </div>
-
-        <div className="grid grid-rows-[_3fr_4fr] gap-4 h-full">
-          <div className="relative flex-grow border border-indigo-700/20 rounded-2xl">
-            <textarea
-              className="w-full h-full p-6 pt-12 text-lg bg-indigo-950/50 text-indigo-100 rounded-2xl resize-none focus:ring-2 focus:ring-purple-500 focus:outline-none placeholder-indigo-300/50"
-              placeholder="Enter text to adjust tone..."
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                handleInputChange(e.target.value)
-              }
-            />
-            <label className="absolute top-4 left-6 text-sm font-semibold text-indigo-300">
-              Input Text
-            </label>
-          </div>
-
-          <div className="relative flex-grow rounded-2xl border-4 border-transparent bg-violet-950/50">
-            <div className="w-full h-full p-6 pt-12 text-lg rounded-2xl overflow-auto text-violet-100 font-medium">
-              <ScrambleText text={outputText} />
-            </div>
-            <label className="absolute top-4 left-6 text-sm font-semibold text-violet-300">
-              Adjusted Text
-            </label>
-          </div>
-        </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:min-h-[calc(100vh-12rem)]">
+      <div className="flex items-center justify-center aspect-square lg:aspect-auto order-2 lg:order-none">
+        <ToneChangerGrid onToneChange={handleToneChange} />
       </div>
 
-      <Footer />
+      <div className="grid grid-rows-[_3fr_4fr] gap-4 h-full">
+        <div className="relative flex-grow border border-indigo-700/20 rounded-2xl">
+          <textarea
+            className="w-full h-full p-6 pt-12 text-lg bg-indigo-950/50 text-indigo-100 rounded-2xl resize-none focus:ring-2 focus:ring-purple-500 focus:outline-none placeholder-indigo-300/50"
+            placeholder="Enter text to adjust tone..."
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              handleInputChange(e.target.value)
+            }
+          />
+          <label className="absolute top-4 left-6 text-sm font-semibold text-indigo-300">
+            Input Text
+          </label>
+        </div>
+
+        <div className="relative flex-grow rounded-2xl border-4 border-transparent bg-violet-950/50">
+          <div className="w-full h-full p-6 pt-12 text-lg rounded-2xl overflow-auto text-violet-100 font-medium">
+            <ScrambleText text={outputText} />
+          </div>
+          <label className="absolute top-4 left-6 text-sm font-semibold text-violet-300">
+            Adjusted Text
+          </label>
+        </div>
+      </div>
     </div>
   );
 };

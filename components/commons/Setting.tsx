@@ -13,7 +13,10 @@ import { Settings } from "lucide-react";
 import useApiSettingsStore from "../../store/apiSettingsStore";
 
 const Setting = () => {
-  const { apiKey, apiUrl, setApiKey, setApiUrl } = useApiSettingsStore();
+  const { apiKey, apiUrl, modelName, setModelName, setApiKey, setApiUrl } =
+    useApiSettingsStore();
+
+  console.log("nodemname", modelName);
 
   return (
     <Dialog>
@@ -65,6 +68,24 @@ const Setting = () => {
               }
               className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
               placeholder="Enter API URL"
+            />
+          </div>
+
+          <div className="grid gap-2">
+            <Label
+              htmlFor="modelName"
+              className="text-sm font-medium text-gray-300"
+            >
+              Model Name
+            </Label>
+            <Input
+              id="modelName"
+              value={modelName}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setModelName(e.target.value)
+              }
+              className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
+              placeholder="Enter Model name"
             />
           </div>
         </div>

@@ -1,3 +1,5 @@
+import Footer from "../components/commons/Footer";
+import Header from "../components/commons/Header";
 import ToneAdjuster from "../components/ToneAdjuster";
 import Head from "next/head";
 
@@ -43,7 +45,11 @@ function Home() {
         <meta name="author" content="rooben" />
       </Head>
       <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4 font-sans">
-        <ToneAdjuster />
+        <div className="w-full max-w-7xl mx-auto p-2 lg:p-8">
+          <Header />
+          <ToneAdjuster />
+          <Footer />
+        </div>
       </div>
     </>
   );
