@@ -55,7 +55,7 @@ const Setting = () => {
           variant="ghost"
           className="text-gray-400 hover:text-white hover:bg-gray-900 bg-gray-900/50 border backdrop-blur-lg border-gray-800/50 rounded-full flex items-center gap-2 px-4"
         >
-          <div className="rounded-full border -ml-3 border-indigo-800 bg-indigo-900/50 p-2">
+          <div className="rounded-full border -ml-3 border-indigo-800/50 bg-gradient-to-t from-indigo-900/60 to-indigo-900/20 p-2">
             <Settings className="h-4 w-4" />
           </div>
           <span className="text-base">Settings</span>
@@ -64,10 +64,10 @@ const Setting = () => {
       <DialogContent className="sm:max-w-[600px] bg-gray-900 border border-gray-800 text-gray-100 overflow-y-scroll max-h-screen">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold text-indigo-100 flex items-center gap-2">
-            <div className="rounded-md border border-indigo-800 bg-indigo-900/50 p-1">
+            <div className="rounded-full border -ml-3 border-indigo-800/50 bg-gradient-to-t from-indigo-900/60 to-indigo-900/20 p-2">
               <Settings className="h-4 w-4" />
             </div>
-            Model Configuration
+            Settings
           </DialogTitle>
         </DialogHeader>
         <div className="space-y-6 py-6">
@@ -171,7 +171,7 @@ const Setting = () => {
             Save Changes
           </Button>
         </div>
-        <div className="mt-8 flex flex-col gap-4 border border-indigo-900/50 rounded-lg p-4 bg-indigo-900/10">
+        <div className="mt-8 flex flex-col gap-4 border border-indigo-900/50 rounded-xl p-4 bg-indigo-900/10">
           <div className="flex items-start gap-3 text-gray-200">
             <Globe className="h-5 w-5 text-gray-400 flex-shrink-0 mt-1" />
             <div>

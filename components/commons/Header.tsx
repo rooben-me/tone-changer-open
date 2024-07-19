@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Setting from "./Setting";
+import MagicButton from "./MagicButton";
 
 const Header = () => {
   return (
@@ -12,7 +13,10 @@ const Header = () => {
         </h1>
       </div>
 
-      <Setting />
+      <div className="flex items-center gap-4">
+        <MagicButton />
+        <Setting />
+      </div>
     </header>
   );
 };
