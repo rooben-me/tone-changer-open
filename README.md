@@ -1,6 +1,4 @@
-
-https://github.com/user-attachments/assets/c2fb9eb5-1989-491e-aa90-99e0c2298132
-Uploading open-tone-changer.mp4…
+https://github.com/user-attachments/assets/d3d66b66-2417-4c3f-b58c-b29a8c2f6c70
 
 # Tone Changer
 
