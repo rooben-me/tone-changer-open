@@ -2,12 +2,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LinkedInIcon from "../Icons/LinkedInIcon";
+import GitHubIcon from "../Icons/GitHubIcon";
 
 const Footer = () => {
   return (
     <footer>
       <div className="flex flex-col gap-4 items-center justify-center mt-24 mb-24 lg:mb-0">
-        <div className="flex items-center justify-right gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4">
           <Link
             href="https://rooben.site/"
             target="_blank"
@@ -27,6 +28,17 @@ const Footer = () => {
               <LinkedInIcon size={24} />
             </div>
             <span className="text-blue-400">My Linkedin</span>
+          </Link>
+
+          <Link
+            href="https://github.com/rooben-me/tone-changer-open"
+            target="_blank"
+            className="group px-4 py-2 rounded-lg bg-fuchsia-900/10 border border-fuchsia-800/30 flex items-center gap-2 grayscale hover:grayscale-0 ease-in-out transition-all"
+          >
+            <div className="-ml-2 text-white/20 opacity-50 group-hover:text-fuchsia-500/80 transition-all ease-in-out group-hover:opacity-100">
+              <GitHubIcon size={24} />
+            </div>
+            <span className="text-fuchsia-600">Source code</span>
           </Link>
         </div>
 
