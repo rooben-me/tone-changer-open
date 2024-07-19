@@ -9,7 +9,15 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { Settings, RefreshCw, Globe, Lock, Info } from "lucide-react";
+import {
+  Settings,
+  RefreshCw,
+  Globe,
+  Lock,
+  Info,
+  Eye,
+  EyeOff,
+} from "lucide-react";
 import useApiSettingsStore from "../../store/apiSettingsStore";
 import { toast } from "sonner";
 
@@ -20,6 +28,7 @@ const Setting = () => {
   const [tempApiUrl, setTempApiUrl] = useState(apiUrl);
   const [tempModelName, setTempModelName] = useState(modelName);
   const [isChanged, setIsChanged] = useState(false);
+  const [showApiKey, setShowApiKey] = useState(false);
 
   useEffect(() => {
     setIsChanged(
@@ -36,7 +45,6 @@ const Setting = () => {
     setIsChanged(false);
     toast.success("Settings saved", {
       description: "Your model configuration has been updated successfully.",
-      className: "bg-purple-700 text-white border border-purple-500",
     });
   };
 
@@ -45,6 +53,10 @@ const Setting = () => {
     setTempApiUrl(apiUrl);
     setTempModelName(modelName);
     setIsChanged(false);
+  };
+
+  const toggleShowApiKey = () => {
+    setShowApiKey(!showApiKey);
   };
 
   return (
@@ -83,13 +95,30 @@ const Setting = () => {
                 <div className="w-2 h-2 bg-blue-500 rounded-full ml-2" />
               )}
             </div>
-            <Input
-              id="API Key"
-              value={tempApiKey}
-              onChange={(e) => setTempApiKey(e.target.value)}
-              className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
-              placeholder={`Enter API Key`}
-            />
+            <div className="relative">
+              <Input
+                id="API Key"
+                type={showApiKey ? "text" : "password"}
+                value={tempApiKey}
+                onChange={(e) => setTempApiKey(e.target.value)}
+                className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500 pr-10 transition-all duration-300 ease-in-out"
+                placeholder={`Enter API Key`}
+                style={{
+                  opacity: showApiKey ? 1 : 0.5,
+                }}
+              />
+              <button
+                type="button"
+                onClick={toggleShowApiKey}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white focus:outline-none"
+              >
+                {showApiKey ? (
+                  <EyeOff className="h-5 w-5" />
+                ) : (
+                  <Eye className="h-5 w-5" />
+                )}
+              </button>
+            </div>
             <p className="text-xs text-gray-400 mt-2">
               <p>
                 Need an API key? Visit{" "}
