@@ -9,50 +9,48 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import {
-  Settings,
-  RefreshCw,
-  Globe,
-  Lock,
-  Info,
-  Eye,
-  EyeOff,
-} from "lucide-react";
+import { Settings, RefreshCw, Globe, Lock, Eye, EyeOff } from "lucide-react";
 import useApiSettingsStore from "../../store/apiSettingsStore";
 import { toast } from "sonner";
 
 const Setting = () => {
   const { apiKey, apiUrl, modelName, setApiKey, setApiUrl, setModelName } =
     useApiSettingsStore();
-  const [tempApiKey, setTempApiKey] = useState(apiKey);
-  const [tempApiUrl, setTempApiUrl] = useState(apiUrl);
-  const [tempModelName, setTempModelName] = useState(modelName);
+  const [localSettings, setLocalSettings] = useState({
+    apiKey: "",
+    apiUrl: "",
+    modelName: "",
+  });
   const [isChanged, setIsChanged] = useState(false);
   const [showApiKey, setShowApiKey] = useState(false);
 
   useEffect(() => {
+    setLocalSettings({ apiKey, apiUrl, modelName });
+  }, [apiKey, apiUrl, modelName]);
+
+  useEffect(() => {
     setIsChanged(
-      tempApiKey !== apiKey ||
-        tempApiUrl !== apiUrl ||
-        tempModelName !== modelName
+      localSettings.apiKey !== apiKey ||
+        localSettings.apiUrl !== apiUrl ||
+        localSettings.modelName !== modelName
     );
-  }, [tempApiKey, tempApiUrl, tempModelName, apiKey, apiUrl, modelName]);
+  }, [localSettings, apiKey, apiUrl, modelName]);
+
+  const handleInputChange = (field, value) => {
+    setLocalSettings((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSave = () => {
-    setApiKey(tempApiKey);
-    setApiUrl(tempApiUrl);
-    setModelName(tempModelName);
-    setIsChanged(false);
+    setApiKey(localSettings.apiKey);
+    setApiUrl(localSettings.apiUrl);
+    setModelName(localSettings.modelName);
     toast.success("Settings saved", {
       description: "Your model configuration has been updated successfully.",
     });
   };
 
   const handleReset = () => {
-    setTempApiKey(apiKey);
-    setTempApiUrl(apiUrl);
-    setTempModelName(modelName);
-    setIsChanged(false);
+    setLocalSettings({ apiKey, apiUrl, modelName });
   };
 
   const toggleShowApiKey = () => {
@@ -91,7 +89,7 @@ const Setting = () => {
               >
                 API Key
               </Label>
-              {tempApiKey !== apiKey && (
+              {localSettings.apiKey !== apiKey && (
                 <div className="w-2 h-2 bg-blue-500 rounded-full ml-2" />
               )}
             </div>
@@ -99,8 +97,8 @@ const Setting = () => {
               <Input
                 id="API Key"
                 type={showApiKey ? "text" : "password"}
-                value={tempApiKey}
-                onChange={(e) => setTempApiKey(e.target.value)}
+                value={localSettings.apiKey}
+                onChange={(e) => handleInputChange("apiKey", e.target.value)}
                 className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500 pr-10 transition-all duration-300 ease-in-out"
                 placeholder={`Enter API Key`}
                 style={{
@@ -120,18 +118,16 @@ const Setting = () => {
               </button>
             </div>
             <p className="text-xs text-gray-400 mt-2">
-              <p>
-                Need an API key? Visit{" "}
-                <a
-                  href="https://console.groq.com/docs/quickstart"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-400 hover:underline"
-                >
-                  Groq Console
-                </a>{" "}
-                to get a free API key
-              </p>
+              Need an API key? Visit{" "}
+              <a
+                href="https://console.groq.com/docs/quickstart"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:underline"
+              >
+                Groq Console
+              </a>{" "}
+              to get a free API key
             </p>
           </div>
 
@@ -143,14 +139,14 @@ const Setting = () => {
               >
                 API URL
               </Label>
-              {tempApiUrl !== apiUrl && (
+              {localSettings.apiUrl !== apiUrl && (
                 <div className="w-2 h-2 bg-blue-500 rounded-full ml-2" />
               )}
             </div>
             <Input
               id="API URL"
-              value={tempApiUrl}
-              onChange={(e) => setTempApiUrl(e.target.value)}
+              value={localSettings.apiUrl}
+              onChange={(e) => handleInputChange("apiUrl", e.target.value)}
               className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
               placeholder={`Enter API URL`}
             />
@@ -167,14 +163,14 @@ const Setting = () => {
               >
                 Model Name
               </Label>
-              {tempModelName !== modelName && (
+              {localSettings.modelName !== modelName && (
                 <div className="w-2 h-2 bg-blue-500 rounded-full ml-2" />
               )}
             </div>
             <Input
               id="Model Name"
-              value={tempModelName}
-              onChange={(e) => setTempModelName(e.target.value)}
+              value={localSettings.modelName}
+              onChange={(e) => handleInputChange("modelName", e.target.value)}
               className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
               placeholder={`Enter Model Name`}
             />
