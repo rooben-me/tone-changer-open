@@ -1,6 +1,6 @@
 https://github.com/user-attachments/assets/d3d66b66-2417-4c3f-b58c-b29a8c2f6c70
 
-# Tone Changer
+# Reverse-Engineered Figma Tone Changer
 
 A Figma-inspired tone changer built with Groq and Llama-3-8b
 
