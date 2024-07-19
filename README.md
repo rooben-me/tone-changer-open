@@ -8,5 +8,5 @@ This project is a reverse-engineered version of Figma's tone changer, implemente
 
 ## Demo
 
-https://github.com/rooben-me/tone-changer/assets/51721541/ac15130e-9b8e-4520-ace4-f950494571b4
+https://github.com/user-attachments/assets/520a8c66-c718-4aa7-b4c4-623e976e5f1e
 
