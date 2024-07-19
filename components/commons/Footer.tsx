@@ -30,14 +30,14 @@ const Footer = () => {
           </Link>
         </div>
 
-        <Image src="/Signature_White.png" width={240} height={120} alt="" />
-
         <span className="text-gray-500">
           Background by{" "}
           <a href="unicorn.studio" className="font-medium">
             unicorn.studio
           </a>
         </span>
+
+        <Image src="/Signature_White.png" width={240} height={120} alt="" />
       </div>
     </footer>
   );

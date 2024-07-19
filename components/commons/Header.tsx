@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Setting from "./Setting";
-import MagicButton from "./MagicButton";
+import MagicButton from "./MagicBackground/MagicButton";
 
 const Header = () => {
   return (

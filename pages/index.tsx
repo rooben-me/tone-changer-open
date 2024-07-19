@@ -4,6 +4,7 @@ import Footer from "../components/commons/Footer";
 import Header from "../components/commons/Header";
 import ToneAdjuster from "../components/ToneAdjuster";
 import { Toaster } from "../components/ui/sonner";
+import MagicBackground from "../components/commons/MagicBackground/MagicBackground";
 
 function Home() {
   return (
@@ -54,14 +55,7 @@ function Home() {
         </div>
 
         <Toaster />
-
-        {/* <iframe
-          src="https://unicorn.studio/embed/8z1j7fMVuTEcPYu372Py?scale=1&dpi=2&fps=60"
-          width="407px"
-          className="fixed inset-0 scale-125 w-full h-full rotate-180 hidden lg:block"
-          height="738px"
-          loading="lazy"
-        ></iframe> */}
+        <MagicBackground />
       </div>
     </>
   );

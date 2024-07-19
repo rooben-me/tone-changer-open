@@ -198,8 +198,8 @@ const Setting = () => {
             <div>
               <h4 className="text-sm font-medium">Your Data Stays Local</h4>
               <p className="text-xs mt-1 text-gray-300">
-                All settings are stored in your browser. No data is sent to our
-                servers.
+                All settings are stored in your browser. No data is sent to the
+                server.
               </p>
             </div>
           </div>
