@@ -26,7 +26,7 @@ git clone https://github.com/rooben-me/tone-changer-open
 ```
 cd tone-changer-open
 ```
-4. Install the dependencies:
+3. Install the dependencies:
 ```
 pnpm install
 ```
