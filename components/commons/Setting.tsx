@@ -99,7 +99,7 @@ const Setting = () => {
               <Input
                 id="API Key"
                 type={showApiKey ? "text" : "password"}
-                value={apiKey}
+                value={tempApiKey}
                 onChange={(e) => setTempApiKey(e.target.value)}
                 className="bg-gray-800 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500 pr-10 transition-all duration-300 ease-in-out"
                 placeholder={`Enter API Key`}
