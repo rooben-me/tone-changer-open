@@ -53,9 +53,9 @@ const Setting = () => {
         <Button
           size="lg"
           variant="ghost"
-          className="text-gray-400 hover:text-white hover:bg-gray-800 bg-gray-800/10 border border-gray-800/50 rounded-full flex items-center gap-2 px-4"
+          className="text-gray-400 hover:text-white hover:bg-gray-900 bg-gray-900/50 border backdrop-blur-lg border-gray-800/50 rounded-full flex items-center gap-2 px-4"
         >
-          <div className="rounded-full border -ml-2 border-indigo-800 bg-indigo-900/50 p-2">
+          <div className="rounded-full border -ml-3 border-indigo-800 bg-indigo-900/50 p-2">
             <Settings className="h-4 w-4" />
           </div>
           <span className="text-base">Settings</span>
@@ -91,7 +91,18 @@ const Setting = () => {
               placeholder={`Enter API Key`}
             />
             <p className="text-xs text-gray-400 mt-2">
-              Enter your API key (We recommend Groq for free access)
+              <p>
+                Need an API key? Visit{" "}
+                <a
+                  href="https://console.groq.com/docs/quickstart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-400 hover:underline"
+                >
+                  Groq Console
+                </a>{" "}
+                to get a free API key
+              </p>
             </p>
           </div>
 
@@ -181,6 +192,7 @@ const Setting = () => {
           </div>
           {/* Seperator */}
           <div className="w-full h-px bg-indigo-900/50"></div>
+
           <div className="flex items-start gap-3 text-gray-200">
             <Lock className="h-5 w-5 text-gray-400 flex-shrink-0 mt-1" />
             <div>

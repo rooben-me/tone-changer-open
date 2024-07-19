@@ -11,7 +11,7 @@ const Footer = () => {
           <Link
             href="https://rooben.site/"
             target="_blank"
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-900/10 border border-orange-800/30 text-orange-400 grayscale hover:grayscale-0 ease-in-out transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-900/10 border border-orange-800/30 text-orange-400 grayscale hover:grayscale-0 ease-in-out transition-all backdrop-blur-md"
           >
             <div className="-ml-2">
               <Image src="/rooben-photo.webp" width={24} height={24} alt="" />
@@ -21,7 +21,7 @@ const Footer = () => {
           <Link
             href="https://www.linkedin.com/posts/rooben-me_ui-ux-userexperience-activity-7218310729014075392-0ywm"
             target="_blank"
-            className="group px-4 py-2 rounded-lg bg-blue-900/10 border border-blue-800/30 flex items-center gap-2 grayscale hover:grayscale-0 ease-in-out transition-all"
+            className="group px-4 py-2 rounded-lg bg-blue-900/10 border border-blue-800/30 flex items-center gap-2 grayscale hover:grayscale-0 ease-in-out transition-all backdrop-blur-md"
           >
             <div className="-ml-2 text-white/20 opacity-50 group-hover:text-blue-400/80 transition-all ease-in-out group-hover:opacity-100">
               <LinkedInIcon size={24} />
@@ -31,6 +31,13 @@ const Footer = () => {
         </div>
 
         <Image src="/Signature_White.png" width={240} height={120} alt="" />
+
+        <span className="text-gray-500">
+          Background by{" "}
+          <a href="unicorn.studio" className="font-medium">
+            unicorn.studio
+          </a>
+        </span>
       </div>
     </footer>
   );

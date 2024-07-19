@@ -111,7 +111,7 @@ const ToneAdjuster: React.FC = () => {
       <div className="grid grid-rows-[_3fr_4fr] gap-4 h-full">
         <div className="relative flex-grow border border-indigo-700/20 rounded-2xl">
           <textarea
-            className="w-full h-full p-6 pt-12 text-lg bg-indigo-950/50 text-indigo-100 rounded-2xl resize-none focus:ring-2 focus:ring-purple-500 focus:outline-none placeholder-indigo-300/50"
+            className="w-full h-full p-6 pt-12 text-lg bg-indigo-950/60 backdrop-blur-lg text-indigo-100 rounded-2xl resize-none focus:ring-2 focus:ring-purple-500 focus:outline-none placeholder-indigo-300/50"
             placeholder="Enter text to adjust tone..."
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
               handleInputChange(e.target.value)
@@ -122,7 +122,7 @@ const ToneAdjuster: React.FC = () => {
           </label>
         </div>
 
-        <div className="relative flex-grow rounded-2xl border-4 border-transparent bg-violet-950/50">
+        <div className="relative flex-grow rounded-2xl border-4 border-transparent bg-violet-950/60 backdrop-blur-lg">
           <div className="w-full h-full p-6 pt-12 text-lg rounded-2xl overflow-auto text-violet-100 font-medium">
             <ScrambleText text={outputText} />
           </div>
