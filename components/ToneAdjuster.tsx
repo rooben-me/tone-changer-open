@@ -74,7 +74,6 @@ const ToneAdjuster: React.FC = () => {
   const [tones, setTones] = useState<Tone[]>([]);
   const { apiKey, apiUrl, modelName } = useApiSettingsStore();
 
-  console.log(modelName, "modea in home");
   const handleInputChange = useCallback((text: string) => {
     setInputText(text);
   }, []);
