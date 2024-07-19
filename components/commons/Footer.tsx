@@ -35,10 +35,10 @@ const Footer = () => {
             target="_blank"
             className="group px-4 py-2 rounded-lg bg-fuchsia-900/10 border border-fuchsia-800/30 flex items-center gap-2 grayscale hover:grayscale-0 ease-in-out transition-all"
           >
-            <div className="-ml-2 text-white/20 opacity-50 group-hover:text-fuchsia-500/80 transition-all ease-in-out group-hover:opacity-100">
+            <div className="-ml-2 text-white/20 opacity-50 group-hover:text-fuchsia-400/80 transition-all ease-in-out group-hover:opacity-100">
               <GitHubIcon size={24} />
             </div>
-            <span className="text-fuchsia-600">Source code</span>
+            <span className="text-fuchsia-400">Source code</span>
           </Link>
         </div>
 
