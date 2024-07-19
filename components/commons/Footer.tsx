@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LinkedInIcon from "../Icons/LinkedInIcon";
-import GitHubIcon from "../Icons/GitHubIcon";
+import GitHubIcon from "../Icons/GithubIcon";
 
 const Footer = () => {
   return (
