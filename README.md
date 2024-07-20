@@ -2,7 +2,7 @@ https://github.com/user-attachments/assets/d3d66b66-2417-4c3f-b58c-b29a8c2f6c70
 
 # Reverse-Engineered Figma Tone Changer
 
-A Figma-inspired tone changer built with Next.js, tailwind.css, Shadcn, Groq, and Llama-3-8b
+A Figma-inspired tone changer built with Next.js, tailwind.css, Shadcn, Groq, and Llama-3
 
 ## Description
 
@@ -52,19 +52,13 @@ To start the production server:
 pnpm start
 ```
 
-## Usage
-
-1. Enter your text in the input field.
-2. Use the tone changer grid to select desired tones and their weights.
-3. The adjusted text will appear in real-time in the output field.
-
 ## Technologies Used
 
 - Next.js
 - React
 - Tailwind CSS
 - Groq API
-- Llama-3-8b language model
+- Llama-3 language model
 - Zustand for state management
 - Shadcn
 - Unicorn.studios for creating Magic Background
