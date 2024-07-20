@@ -180,14 +180,17 @@ const Setting = () => {
           </div>
         </div>
         <div className="flex justify-end items-center gap-4">
-          <Button
-            onClick={handleReset}
-            className="bg-gray-700 hover:bg-gray-600 text-white"
-            disabled={!isChanged}
-          >
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Reset
-          </Button>
+          {isChanged ? (
+            <Button
+              onClick={handleReset}
+              className="bg-gray-700 hover:bg-gray-600 text-white"
+              disabled={!isChanged}
+            >
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Reset
+            </Button>
+          ) : null}
+
           <Button
             onClick={handleSave}
             className="bg-purple-600 hover:bg-purple-700 text-white px-6"
