@@ -6,7 +6,7 @@ A Figma-inspired tone changer built with Next.js, tailwind.css, Shadcn, Groq, an
 
 ## Description
 
-This project is a reverse-engineered version of Figma's tone changer, implemented as an open-source web application. It leverages Groq for high-speed inference and uses the Llama-3-8b language model to adjust the tone of input text based on user-selected tones and weights.
+This project is a reverse-engineered version of Figma's tone changer. It uses Groq's Llama-3-8b for high-speed inference and to adjust the tone of input text based on user-selected tones and weights.
 
 ## Prerequisites
 
